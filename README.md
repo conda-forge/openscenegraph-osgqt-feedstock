@@ -5,9 +5,13 @@ Home: http://github.com/openscenegraph/osgQt
 
 Package license: LGPL-2.1-only
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/openscenegraph-osgqt-feedstock/blob/master/LICENSE.txt)
 
 Summary: OpenSceneGraph Qt integration library
+
+Development: http://github.com/openscenegraph/osgQt
+
+Documentation: http://www.openscenegraph.org/index.php/documentation
 
 OpenSceneGraph Qt integration library
 
