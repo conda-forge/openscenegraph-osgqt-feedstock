@@ -9,7 +9,7 @@ source:
   url: https://github.com/openscenegraph/osgQt/archive/{{ version }}.tar.gz
   sha256: dcc4436590639168e6470fe9c5343c82bca738d3296ebee014f40f2dc029afa1
   patches:
-    - patches/osx.patch  # [osx]
+    - patches/qt5_modern.patch
 
 build:
   number: 2
@@ -41,7 +41,7 @@ test:
   requires:
     - pkg-config
   commands:
-    - pkg-config --modversion {{ name }}5
+    - pkg-config --modversion {{ name }}
     - test -f $PREFIX/include/osgQt/GraphicsWindowQt
 
 about:
