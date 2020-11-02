@@ -7,6 +7,7 @@ cmake .. \
       -DCMAKE_PREFIX_PATH=$PREFIX \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
+      -DBUILD_OSG_EXAMPLES=ON \
       -DLIB_POSTFIX=""
 
 make -j${CPU_COUNT}
