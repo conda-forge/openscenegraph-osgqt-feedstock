@@ -1,6 +1,6 @@
-From 6bb8c3a25a8e3db068aa5d04faccc1ad475660b2 Mon Sep 17 00:00:00 2001
+From 6ebc7faf79f4c70ff360311b8e0a17397ada0165 Mon Sep 17 00:00:00 2001
 From: yann_dm <yann.montmarin@gmail.com>
-Date: Mon, 2 Nov 2020 15:57:32 +0100
+Date: Mon, 2 Nov 2020 16:57:32 +0100
 Subject: [PATCH] Patch to qt5 support
 
 ---
@@ -14,7 +14,7 @@ Subject: [PATCH] Patch to qt5 support
  7 files changed, 26 insertions(+), 217 deletions(-)
 
 diff --git CMakeLists.txt CMakeLists.txt
-index d214d30..d5818f3 100644
+index d214d30..2a29559 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
 @@ -11,44 +11,6 @@ ELSE(WIN32)
@@ -123,12 +123,12 @@ index d214d30..d5818f3 100644
 -ELSE()
 -    SET ( PKGCONFIG_MODULE_NAME osgQt )
 -ENDIF()
-+SET ( PKGCONFIG_MODULE_NAME osgQt )
++SET ( PKGCONFIG_MODULE_NAME osgQt5 )
  
  CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/packaging/pkgconfig/openscenegraph-osgQt.pc.in
    ${PROJECT_BINARY_DIR}/packaging/pkgconfig/openscenegraph-${PKGCONFIG_MODULE_NAME}.pc
 diff --git examples/CMakeLists.txt examples/CMakeLists.txt
-index 21151e9..57441cb 100644
+index 21151e9..96d9d25 100644
 --- examples/CMakeLists.txt
 +++ examples/CMakeLists.txt
 @@ -4,27 +4,13 @@
@@ -140,7 +140,7 @@ index 21151e9..57441cb 100644
 -ELSE()
 -    SET(TARGET_COMMON_LIBRARIES osgQt)
 -ENDIF()
-+SET(TARGET_COMMON_LIBRARIES osgQt)
++SET(TARGET_COMMON_LIBRARIES osgQt5)
  
  IF(DYNAMIC_OPENSCENEGRAPH)
 -   
@@ -197,7 +197,7 @@ index 308997f..2148153 100644
  
 +SETUP_EXAMPLE(${EXAMPLE_NAME})
 diff --git examples/osgQtWidgets/CMakeLists.txt examples/osgQtWidgets/CMakeLists.txt
-index 34b9f66..14cd46d 100644
+index 34b9f66..30571e8 100644
 --- examples/osgQtWidgets/CMakeLists.txt
 +++ examples/osgQtWidgets/CMakeLists.txt
 @@ -7,21 +7,8 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
@@ -208,7 +208,7 @@ index 34b9f66..14cd46d 100644
 -    SET(TARGET_EXTERNAL_LIBRARIES ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTOPENGL_LIBRARY} ${QT_QTWEBKIT_LIBRARY})
 -    INCLUDE_DIRECTORIES(${QT_INCLUDE_DIR} ${QT_QTCORE_INCLUDE_DIR} ${QT_QTOPENGL_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_QTWEBKIT_INCLUDE_DIR} )
 -endif( QT4_FOUND )
-+SET(TARGET_LIBRARIES  ${OPENSCENEGRAPH_LIBRARIES} Qt5::Widgets Qt5::OpenGL Qt5::WebKitWidgets)
++SET(TARGET_LIBRARIES  ${OPENSCENEGRAPH_LIBRARIES} Qt5::Widgets Qt5::OpenGL)
  
 -SET(TARGET_LIBRARIES  ${OPENSCENEGRAPH_LIBRARIES})
 +SET ( EXAMPLE_NAME osgQtWidgets )
@@ -289,7 +289,7 @@ index d58853f..b61e942 100644
 -ENDIF( Qt5Widgets_FOUND )
 -
 diff --git src/osgQt/CMakeLists.txt src/osgQt/CMakeLists.txt
-index 60f3250..260ea0a 100644
+index 60f3250..bb23b7b 100644
 --- src/osgQt/CMakeLists.txt
 +++ src/osgQt/CMakeLists.txt
 @@ -5,26 +5,17 @@ ELSE()
@@ -302,8 +302,8 @@ index 60f3250..260ea0a 100644
 -ELSE()
 -    SET(LIB_NAME osgQt)
 -ENDIF()
-+SET(LIB_NAME osgQt)
-+
++SET(LIB_NAME osgQt5)
++SET(HEADER_INSTALL_DIR osgQt)
  SET(HEADER_PATH ${OpenSceneGraph_SOURCE_DIR}/include/osgQt)
  
  SET(SOURCES_H
