@@ -30,6 +30,7 @@ requirements:
     - {{ cdt('libxdamage') }}        # [linux]
     - {{ cdt('libxxf86vm') }}        # [linux]
     - {{ cdt('libxext') }}           # [linux]
+    - {{ cdt('libxfixes-devel') }}   # [linux]
   host:
     - openscenegraph
     - qt
