@@ -12,3 +12,7 @@ cmake .. \
 
 make -j${CPU_COUNT}
 make install
+
+# Manual install the data needed for the example
+cd ..
+cp -r examples_data $PREFIX/share/OpenSceneGraph

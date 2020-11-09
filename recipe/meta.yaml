@@ -6,10 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/openscenegraph/osgQt/archive/{{ version }}.tar.gz
-  sha256: dcc4436590639168e6470fe9c5343c82bca738d3296ebee014f40f2dc029afa1
-  patches:
+  - url: https://github.com/openscenegraph/osgQt/archive/{{ version }}.tar.gz
+    sha256: dcc4436590639168e6470fe9c5343c82bca738d3296ebee014f40f2dc029afa1
+    patches:
     - patches/qt5_modern.patch
+  - path: examples_data
+    folder: examples_data
 
 build:
   number: 3
