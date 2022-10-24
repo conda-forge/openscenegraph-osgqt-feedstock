@@ -1,0 +1,28 @@
+From e2e7d2fea34e6ff8524acae033a64712d04d77aa Mon Sep 17 00:00:00 2001
+From: x1244 <x11244@126.com>
+Date: Mon, 5 Apr 2021 21:35:56 +0800
+Subject: [PATCH] fixed crash when press key F
+
+Check the validation of `_mainwindow` when invoke `_mainwindow->setCentralWidget(this)`
+---
+ src/osgQOpenGL/osgQOpenGLWidget.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git src/osgQOpenGL/osgQOpenGLWidget.cpp src/osgQOpenGL/osgQOpenGLWidget.cpp
+index fe16e87..c8f827a 100644
+--- src/osgQOpenGL/osgQOpenGLWidget.cpp
++++ src/osgQOpenGL/osgQOpenGLWidget.cpp
+@@ -140,7 +140,9 @@ void osgQOpenGLWidget::keyPressEvent(QKeyEvent* event)
+             showNormal();
+             setMinimumSize(g);
+             QMainWindow* _mainwindow = dynamic_cast<QMainWindow*>(parent());
+-            _mainwindow->setCentralWidget(this);
++            if(_mainwindow){
++                _mainwindow->setCentralWidget(this);
++            }
+ 
+             if(layout())
+                 layout()->setContentsMargins(sMargins);
+-- 
+2.25.1
+

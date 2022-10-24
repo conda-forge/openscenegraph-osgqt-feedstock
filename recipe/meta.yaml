@@ -10,6 +10,7 @@ source:
     sha256: dcc4436590639168e6470fe9c5343c82bca738d3296ebee014f40f2dc029afa1
     patches:
     - patches/qt5_modern.patch
+    - patches/osx_fix_architecture.patch  # [osx]
   - path: examples_data
     folder: examples_data
 
@@ -52,7 +53,7 @@ about:
   license: LGPL-2.1-only
   license_family: LGPL
   license_file: LICENSE.txt
-  summary: 'OpenSceneGraph Qt integration library'
+  summary: OpenSceneGraph Qt integration library
   description: |
     OpenSceneGraph Qt integration library
   doc_url: http://www.openscenegraph.org/index.php/documentation
