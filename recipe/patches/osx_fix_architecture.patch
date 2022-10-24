@@ -1,35 +1,35 @@
-From 0c9e467b38472b32d5d6cb2fdfe33a29594d605a Mon Sep 17 00:00:00 2001
+From a7f4227cae56b91ae2256dce9c9e3bd796ba76a6 Mon Sep 17 00:00:00 2001
 From: Yann Dubois De Mont-Marin <ydemontm@julia.paris.inria.fr>
-Date: Mon, 24 Oct 2022 16:33:11 +0200
-Subject: [PATCH] Do not enforce x86
+Date: Mon, 24 Oct 2022 17:39:20 +0200
+Subject: [PATCH] Avoid harcoding arch x86
 
 ---
- CMakeLists.txt | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ CMakeLists.txt | 4 ----
+ 1 file changed, 4 deletions(-)
 
 diff --git CMakeLists.txt CMakeLists.txt
-index 66e989a..79f5ee0 100644
+index d214d30..7017234 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
-@@ -66,15 +66,15 @@ IF(APPLE)
+@@ -105,18 +105,14 @@ IF(APPLE)
      # the user at any time.
-     IF(OSG_OSX_VERSION VERSION_GREATER 10.8)
+     IF(OSG_OSX_VERSION VERSION_GREATER 10.7)
        # 64 Bit Works, i386,ppc is not supported any more
 -      SET(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for OSX")
-+      # SET(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for OSX")
-       SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.10" CACHE STRING "Target OSX version")
-     ELSEIF(OSG_OSX_VERSION VERSION_GREATER 10.7)
-       # 64 Bit Works, i386,ppc is not supported any more
--      SET(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for OSX")
-+      # SET(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for OSX")
        SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.8" CACHE STRING "Target OSX version")
      ELSEIF(OSG_OSX_VERSION VERSION_EQUAL 10.7)
        # 64 Bit Works, PPC is not supported any more
 -      SET(CMAKE_OSX_ARCHITECTURES "i386;x86_64" CACHE STRING "Build architectures for OSX")
-+      # SET(CMAKE_OSX_ARCHITECTURES "i386;x86_64" CACHE STRING "Build architectures for OSX")
      ELSEIF(OSG_OSX_VERSION VERSION_GREATER 10.4)
        # 64-bit compiles are not supported with Carbon.
-       SET(CMAKE_OSX_ARCHITECTURES "ppc;i386" CACHE STRING "Build architectures for OSX")
+-      SET(CMAKE_OSX_ARCHITECTURES "ppc;i386" CACHE STRING "Build architectures for OSX")
+       SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.5" CACHE STRING "Target OSX version")
+     ELSEIF(OSG_OSX_VERSION VERSION_EQUAL 10.4)
+       # 64-bit compiles are not supported with Carbon.
+-      SET(CMAKE_OSX_ARCHITECTURES "ppc;i386" CACHE STRING "Build architectures for OSX")
+     ELSE()
+       # No Universal Binary support and SDK detection is too unreliable.
+       # Warn user and continue at their own peril.
 -- 
 2.25.1
 
