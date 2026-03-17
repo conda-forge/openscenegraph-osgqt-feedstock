@@ -8,7 +8,8 @@ cmake ${CMAKE_ARGS} .. \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DLIB_POSTFIX="" \
-      -DBUILD_OSG_EXAMPLES=ON
+      -DBUILD_OSG_EXAMPLES=ON \
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 make -j${CPU_COUNT}
 make install

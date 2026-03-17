@@ -9,13 +9,13 @@ source:
   - url: https://github.com/openscenegraph/osgQt/archive/{{ version }}.tar.gz
     sha256: dcc4436590639168e6470fe9c5343c82bca738d3296ebee014f40f2dc029afa1
     patches:
-    - patches/qt5_modern.patch
-    - patches/osx_fix_architecture.patch  # [osx]
+      - patches/qt5_modern.patch
+      - patches/osx_fix_architecture.patch  # [osx]
   - path: examples_data
     folder: examples_data
 
 build:
-  number: 6
+  number: 7
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}
@@ -23,15 +23,12 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - cmake
     - make
     - pkg-config
     - doxygen
     - qt-main  # [build_platform != target_platform]
-    - {{ cdt('mesa-dri-drivers') }}      # [linux]
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
-    - {{ cdt('mesa-libegl-devel') }}     # [linux]
-    - {{ cdt('libselinux-devel') }}      # [linux]
   host:
     - openscenegraph
     - qt-main
@@ -47,6 +44,8 @@ requirements:
     - xorg-libice                        # [linux]
     - xorg-libxxf86vm                    # [linux]
     - xorg-xf86vidmodeproto              # [linux]
+    - libgl-devel                        # [linux]
+    - libegl-devel                       # [linux]
   run:
     - libxcb                             # [linux]
     - xcb-util-wm                        # [linux]
